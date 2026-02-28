@@ -91,17 +91,17 @@ const TBox = ({ label, children, className = '', colorClass = 'glow-box' }) => (
 // ─── Terminal button ────────────────────────────────────────────────────
 const TBtn = ({ children, onClick, color = 'green', className = '' }) => {
   const styles = {
-    green: 'border-[#00ff41] text-[#00ff41] hover:bg-[#00ff41] hover:text-black glow-box',
-    red: 'border-[#ff3333] text-[#ff3333] hover:bg-[#ff3333] hover:text-black glow-box-red',
-    orange: 'border-[#ff8800] text-[#ff8800] hover:bg-[#ff8800] hover:text-black glow-box-orange',
-    ghost: 'border-[#003300] text-[#00cc33] hover:border-[#00ff41] hover:text-[#00ff41]',
+    green: 'bg-[#00ff41]/10 border-[#00ff41] text-[#00ff41] hover:bg-[#00ff41] hover:text-black hover:shadow-[0_0_20px_rgba(0,255,65,0.6)] active:scale-95 glow-box',
+    red: 'bg-[#ff3333]/10 border-[#ff3333] text-[#ff4444] hover:bg-[#ff3333] hover:text-black hover:shadow-[0_0_20px_rgba(255,51,51,0.6)] active:scale-95 glow-box-red',
+    orange: 'bg-[#ff8800]/10 border-[#ffaa00] text-[#ffaa00] hover:bg-[#ff8800] hover:text-black hover:shadow-[0_0_20px_rgba(255,136,0,0.6)] active:scale-95 glow-box-orange',
+    ghost: 'bg-transparent border-[#00ff41]/30 text-[#00cc33] hover:border-[#00ff41] hover:text-[#00ff41] hover:bg-[#00ff41]/5 active:scale-95',
   };
   return (
     <button
       onClick={onClick}
-      className={`px-4 py-2 border font-mono text-xs tracking-[0.2em] uppercase transition-all duration-150 ${styles[color]} ${className}`}
+      className={`inline-flex items-center gap-2 px-5 py-2.5 border font-mono text-xs tracking-[0.2em] uppercase font-bold transition-all duration-150 ${styles[color]} ${className}`}
     >
-      <span className="mr-1 opacity-60">▶</span>{children}
+      <span style={{ fontSize: '10px' }}>▶</span>{children}
     </button>
   );
 };
@@ -380,21 +380,34 @@ export default function App() {
                         <span className={`inline-block mt-1 px-2 py-0.5 border text-[9px] tracking-widest ${cls}`}>{label}</span>
                       </td>
                       <td className="p-4 text-center">
-                        <div className="flex justify-center gap-2">
-                          <button onClick={() => moveTeam(idx, -1)} disabled={idx === 0} className="text-[#003300] hover:text-[#00ff41] disabled:opacity-0 transition-colors font-mono">▲</button>
-                          <button onClick={() => moveTeam(idx, 1)} disabled={idx === panelData.teams.length - 1} className="text-[#003300] hover:text-[#00ff41] disabled:opacity-0 transition-colors font-mono">▼</button>
+                        <div className="flex justify-center gap-3">
+                          <button onClick={() => moveTeam(idx, -1)} disabled={idx === 0}
+                            className="w-7 h-7 flex items-center justify-center border border-[#00ff41]/20 text-[#00ff41]/50 hover:border-[#00ff41] hover:text-[#00ff41] hover:bg-[#00ff41]/10 disabled:opacity-10 transition-all font-mono text-sm">
+                            ▲
+                          </button>
+                          <button onClick={() => moveTeam(idx, 1)} disabled={idx === panelData.teams.length - 1}
+                            className="w-7 h-7 flex items-center justify-center border border-[#00ff41]/20 text-[#00ff41]/50 hover:border-[#00ff41] hover:text-[#00ff41] hover:bg-[#00ff41]/10 disabled:opacity-10 transition-all font-mono text-sm">
+                            ▼
+                          </button>
                         </div>
                       </td>
                       <td className="p-4 text-right">
                         {team.status !== 'done' ? (
                           <button
                             onClick={() => setStatus(idx, team.status === 'current' ? 'done' : 'current')}
-                            className={`px-4 py-1.5 border text-[10px] tracking-widest font-mono transition-all ${team.status === 'current' ? 'border-[#00ff41] text-[#00ff41] hover:bg-[#00ff41] hover:text-black glow-box' : 'border-[#ff3333] text-[#ff3333] hover:bg-[#ff3333] hover:text-black glow-box-red'}`}
+                            className={`inline-flex items-center gap-2 px-5 py-2 border font-mono text-xs font-bold tracking-widest uppercase transition-all duration-150 active:scale-95 ${team.status === 'current'
+                                ? 'bg-[#00ff41]/10 border-[#00ff41] text-[#00ff41] hover:bg-[#00ff41] hover:text-black hover:shadow-[0_0_20px_rgba(0,255,65,0.6)] glow-box'
+                                : 'bg-[#ff3333]/10 border-[#ff3333] text-[#ff4444] hover:bg-[#ff3333] hover:text-black hover:shadow-[0_0_20px_rgba(255,51,51,0.6)] glow-box-red'
+                              }`}
                           >
-                            {team.status === 'current' ? '▶ MARK DONE' : '▶ START'}
+                            <span style={{ fontSize: '10px' }}>▶</span>
+                            {team.status === 'current' ? 'MARK DONE' : 'START'}
                           </button>
                         ) : (
-                          <button onClick={() => setStatus(idx, 'pending')} className="text-[#003300] hover:text-[#00cc33] text-[10px] tracking-widest font-mono transition-colors">[UNDO]</button>
+                          <button onClick={() => setStatus(idx, 'pending')}
+                            className="px-4 py-2 border border-[#00ff41]/20 text-[#00ff41]/40 text-[10px] tracking-widest font-mono uppercase hover:border-[#00ff41]/60 hover:text-[#00ff41]/70 transition-all">
+                            UNDO
+                          </button>
                         )}
                       </td>
                     </tr>
