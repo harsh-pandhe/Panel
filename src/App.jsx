@@ -21,6 +21,7 @@ const db = getFirestore(app);
 const googleProvider = new GoogleAuthProvider();
 const APP_ID = import.meta.env.VITE_APP_ID || 'panel-manager-v1';
 const ADMIN_EMAIL = 'harshpandhehome@gmail.com';
+const MAINTENANCE_MODE = true;
 
 // ─── Panel Data ────────────────────────────────────────────────────────
 const INITIAL_PANELS = {
@@ -232,6 +233,39 @@ export default function App() {
     <div className="flex items-center justify-center h-screen bg-black text-[#00ff41] font-mono text-sm glow">
       <MatrixRain />
       <span className="relative z-10">&gt; BOOTING SYSTEM<span className="blink">_</span></span>
+    </div>
+  );
+
+  if (MAINTENANCE_MODE && !isAdmin) return (
+    <div className="min-h-screen bg-black flex items-center justify-center relative overflow-hidden">
+      <MatrixRain />
+      <div className="relative z-10 max-w-2xl mx-auto px-6 text-center">
+        <div className="mb-8 inline-block border border-[#ff3333] bg-[#ff3333]/10 px-6 py-2 text-[#ff3333] font-mono text-sm tracking-[0.4em] glow-box-red animate-pulse">
+          SYSTEM_OFFLINE
+        </div>
+        <h1 className="mb-6 leading-tight" style={{ fontFamily: "'Press Start 2P', monospace", fontSize: 'clamp(18px, 4vw, 32px)', color: '#00ff41', textShadow: '0 0 20px #00ff41' }}>
+          UNDER MAINTENANCE
+        </h1>
+        <p className="text-[#00cc33] font-mono text-sm tracking-widest mb-12 opacity-80">
+          &gt; THE SYSTEM IS CURRENTLY UNDERGOING CRITICAL UPDATES.<br />
+          &gt; PLEASE STAND BY FOR RE-ESTABLISHING CONNECTION.
+        </p>
+        <div className="flex justify-center gap-4">
+          <div className="w-1.5 h-1.5 bg-[#00ff41] rounded-full animate-bounce delay-0"></div>
+          <div className="w-1.5 h-1.5 bg-[#00ff41] rounded-full animate-bounce delay-150"></div>
+          <div className="w-1.5 h-1.5 bg-[#00ff41] rounded-full animate-bounce delay-300"></div>
+        </div>
+        {!user ? (
+          <button onClick={handleAdminLogin} className="mt-16 text-[#003300] hover:text-[#00ff41] text-[10px] font-mono tracking-widest transition-colors">
+            [ ADMIN_UPLINK ]
+          </button>
+        ) : isAdmin && (
+          <div className="mt-16 flex flex-col items-center gap-4">
+            <p className="text-[#ffaa00] text-[10px] font-mono tracking-widest">AUTHORIZED ACCESS DETECTED</p>
+            <TBtn onClick={() => window.location.reload()} color="green">BYPASS TO DASHBOARD</TBtn>
+          </div>
+        )}
+      </div>
     </div>
   );
 
