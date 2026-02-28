@@ -31,7 +31,7 @@ const INITIAL_PANELS = {
   "Panel 5": ["Asphalt_404", "the_developers", "Code2Crop", "ShunyaCode", "E.X.E", "God's Plan", "Finovators", "Algorithm Addicts", "404 Not Founders", "Overclocked", "Neural Ninjas", "BlackBulls"],
   "Panel 6": ["Quanta5", "Problem Solvers", "TechByte", "Credit Crusaders", "ERROR_404", "PathFinders", "MoneyMind AI", "LearningRateZero", "Cosmic Compilers", "Team CredX", "Nexus Neon", "CODESTREAX"],
   "Panel 7": ["MindStack", "PEANUT BUTTER", "The RESTful Coders", "Team Genspark", "Poha Jalebi", "SKN_Moggers", "Team Async", "DDOS ME", "The Resonators", "BitByBit", "Penta NEUTRON", "Innovators"],
-  "Panel 8": ["Runtime Terrors", "TeamX", "Team ZI0N", "GM HALAMMA", "AyuScan", "Team Ascend", "Ai Avengers", "GoldMiners", "Gameis Alice", "Lazy Loopers", "@Vortex", "Team Saniya"],
+  "Panel 8": ["Runtime Terrors", "TeamX", "Team ZI0N", "GM HALAMMA", "AyuScan", "Team Ascend", "Ai Avengers", "GoldMiners", "Gameis Alice", "Lazy Loopers", "@Vortex", "Lifeline Innovators"],
   "Panel 9": ["Unexpected Outputs", "Healthnova", "GOONERS", "OriginX", "AITians", "Team Atlas", "Team CodeZilla", "HustleCult 3.0", "BugBuster Divas", "Glitch Club", "Shieldher", "Hamsini"],
   "Panel 10": ["DevX", "Anonymous Hackers", "Tech Geeks", "MahilaMitra", "PrachandCoders", "SafeHer", "CodeStars", "Codeflex", "Techno Rangers", "PixelPops", "HERWAY AI Safety Team", "SHEild001"],
 };
