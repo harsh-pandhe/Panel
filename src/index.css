@@ -1,0 +1,455 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Press+Start+2P&display=swap');
+
+/* ─── RESET ─────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* ─── MATRIX VARIABLES ───────────────────── */
+:root {
+  --green: #00ff41;
+  --green-dim: #00cc33;
+  --green-dark: #003300;
+  --green-glow: rgba(0, 255, 65, 0.25);
+  --red: #ff3333;
+  --orange: #ff8800;
+  --black: #000000;
+  --black-2: #050a05;
+  --mono: 'Share Tech Mono', 'Courier New', monospace;
+  --pixel: 'Press Start 2P', monospace;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: var(--black);
+  color: var(--green);
+  font-family: var(--mono);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+  font-family: var(--mono);
+}
+
+/* ─── SCANLINES ──────────────────────────── */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.07) 2px,
+      rgba(0, 0, 0, 0.07) 4px);
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* ─── TERMINAL GLOW ──────────────────────── */
+.glow {
+  text-shadow: 0 0 8px var(--green), 0 0 20px var(--green-dim);
+}
+
+.glow-red {
+  text-shadow: 0 0 8px var(--red), 0 0 20px var(--red);
+}
+
+.glow-box {
+  box-shadow: 0 0 0 1px var(--green), 0 0 15px var(--green-glow), inset 0 0 15px rgba(0, 255, 65, 0.04);
+}
+
+.glow-box-red {
+  box-shadow: 0 0 0 1px var(--red), 0 0 20px rgba(255, 51, 51, 0.4), inset 0 0 20px rgba(255, 51, 51, 0.05);
+}
+
+.glow-box-orange {
+  box-shadow: 0 0 0 1px var(--orange), 0 0 15px rgba(255, 136, 0, 0.3), inset 0 0 15px rgba(255, 136, 0, 0.04);
+}
+
+/* ─── BLINK CURSOR ───────────────────────── */
+@keyframes blink {
+
+  0%,
+  100% {
+    opacity: 1
+  }
+
+  50% {
+    opacity: 0
+  }
+}
+
+.blink {
+  animation: blink 1s step-end infinite;
+}
+
+/* ─── TYPING UNDERLINE ───────────────────── */
+@keyframes typing {
+  from {
+    width: 0
+  }
+
+  to {
+    width: 100%
+  }
+}
+
+/* ─── MATRIX RAIN (canvas handled in JS) ─── */
+.matrix-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.07;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ─── ANIMATIONS ─────────────────────────── */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse-glow {
+
+  0%,
+  100% {
+    box-shadow: 0 0 0 1px var(--green), 0 0 10px var(--green-glow);
+  }
+
+  50% {
+    box-shadow: 0 0 0 1px var(--green), 0 0 30px rgba(0, 255, 65, 0.5);
+  }
+}
+
+@keyframes live-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgba(0, 255, 65, 0.6);
+  }
+
+  70% {
+    box-shadow: 0 0 0 8px rgba(0, 255, 65, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 255, 65, 0);
+  }
+}
+
+.fade-up {
+  animation: fade-in-up 0.5s ease both;
+}
+
+.slide-in {
+  animation: slide-in 0.5s ease both;
+}
+
+.pulse-border {
+  animation: pulse-glow 2.5s ease-in-out infinite;
+}
+
+.live-ring-green {
+  animation: live-ring 1.6s ease-out infinite;
+}
+
+.delay-100 {
+  animation-delay: .1s
+}
+
+.delay-200 {
+  animation-delay: .2s
+}
+
+.delay-300 {
+  animation-delay: .3s
+}
+
+.delay-400 {
+  animation-delay: .4s
+}
+
+.delay-500 {
+  animation-delay: .5s
+}
+
+/* ─── SCROLLBAR ──────────────────────────── */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--green-dark);
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--green-dim);
+}
+
+
+/* Reset & Base */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  display: block;
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 0;
+  font-family: inherit;
+}
+
+/* Custom scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+}
+
+/* Animated mesh gradient for hero */
+@keyframes mesh-move {
+  0% {
+    transform: translate(0%, 0%) scale(1);
+  }
+
+  33% {
+    transform: translate(5%, -8%) scale(1.08);
+  }
+
+  66% {
+    transform: translate(-4%, 6%) scale(0.95);
+  }
+
+  100% {
+    transform: translate(0%, 0%) scale(1);
+  }
+}
+
+@keyframes mesh-move-2 {
+  0% {
+    transform: translate(0%, 0%) scale(1);
+  }
+
+  33% {
+    transform: translate(-6%, 5%) scale(1.1);
+  }
+
+  66% {
+    transform: translate(8%, -4%) scale(0.92);
+  }
+
+  100% {
+    transform: translate(0%, 0%) scale(1);
+  }
+}
+
+@keyframes float-up {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes badge-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.8) translateY(10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes slide-in-left {
+  0% {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-in-right {
+  0% {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fade-up {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.orb-1 {
+  animation: mesh-move 14s ease-in-out infinite;
+}
+
+.orb-2 {
+  animation: mesh-move-2 18s ease-in-out infinite;
+}
+
+.orb-3 {
+  animation: mesh-move 22s ease-in-out infinite reverse;
+}
+
+.float-anim {
+  animation: float-up 4s ease-in-out infinite;
+}
+
+.slide-left {
+  animation: slide-in-left 0.6s ease both;
+}
+
+.slide-right {
+  animation: slide-in-right 0.7s ease both;
+}
+
+.fade-up {
+  animation: fade-up 0.7s ease both;
+}
+
+.delay-100 {
+  animation-delay: 0.1s;
+}
+
+.delay-200 {
+  animation-delay: 0.2s;
+}
+
+.delay-300 {
+  animation-delay: 0.3s;
+}
+
+.delay-400 {
+  animation-delay: 0.4s;
+}
+
+.delay-500 {
+  animation-delay: 0.5s;
+}
+
+/* Live pulse badge */
+@keyframes live-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.5);
+  }
+
+  70% {
+    box-shadow: 0 0 0 8px rgba(239, 68, 68, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+  }
+}
+
+.live-ring {
+  animation: live-ring 1.8s ease-out infinite;
+}
+
+/* Shimmer for stat cards */
+@keyframes shimmer {
+  0% {
+    background-position: -400px 0;
+  }
+
+  100% {
+    background-position: 400px 0;
+  }
+}
+
+.shimmer-border {
+  position: relative;
+}
+
+.shimmer-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.4), transparent);
+  background-size: 400px 100%;
+  animation: shimmer 2.5s linear infinite;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
