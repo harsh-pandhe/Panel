@@ -345,7 +345,8 @@ export default function App() {
             <h2 className="text-[#00ff41] glow font-mono text-2xl tracking-widest">{panelData?.name?.toUpperCase() || '...'}</h2>
             <p className="text-[#003300] text-xs tracking-wider mt-1">UPDATE TEAM STATUS AND SEQUENCE IN REAL-TIME</p>
           </div>
-          <div className="flex gap-3">
+          <div className="flex flex-wrap gap-3">
+            <TBtn onClick={() => { setView('landing'); setPanelData(null); setSelectedPanel(''); }} color="ghost">BACK</TBtn>
             <TBtn onClick={() => setView('projector')} color="green">PROJECTOR MODE</TBtn>
             <TBtn onClick={resetPanel} color="red">RESET PANEL</TBtn>
           </div>
