@@ -26,14 +26,14 @@ const ADMIN_EMAIL = 'harshpandhehome@gmail.com';
 const INITIAL_PANELS = {
   "Panel 1": ["TreeCode", "Spaghetti-404", "Tech Titans", "Garud_X", "Knight Riders", "VishnuBytes", "INORA", "agrinext", "Code4Cause", "HackTheFuture", "TechTrackers", "Titans"],
   "Panel 2": ["Meow", "Genesis", "Krishi Care", "Agri-it", "DevOrigin", "Godvenus", "HackOps!", "Valley techies", "CATALYST CORPS", "npx create", "Code Breakers"],
-  "Panel 3": ["Dolce Far Niente", "Hogriders", "Dev Pirates", "TurboTechies", "CodeBlooded", "Team 100x", "Bluescreen", "Team Debug", "EFN_FC", "CodeXcelerators", "TEAM HACKASTRA", "Chocolate Milkshake", "Prime Innovators", "CtrlZ", "Morpheus builders"],
-  "Panel 4": ["DataHackers", "Recursive Impact", "SkillBridge", "Hell-X", "EduTech", "X Force", "NovaBytes", "TriadX", "Commited", "Asphalt_404", "the_developers", "Code2Crop", "ShunyaCode", "E.X.E", "God's Plan"],
-  "Panel 5": ["Finovators", "Algorithm Addicts", "404 Not Founders", "Overclocked", "Neural Ninjas", "BlackBulls", "Quanta5", "Problem Solvers", "TechByte", "Credit Crusaders", "ERROR_404", "PathFinders", "MoneyMind AI", "LearningRateZero"],
-  "Panel 6": ["Cosmic Compilers", "Team CredX", "Nexus Neon", "CODESTREAX", "MindStack", "PEANUT BUTTER", "The RESTful Coders", "Team Genspark", "Poha Jalebi", "SKN_Moggers", "Team Async", "DDOS ME", "The Resonators"],
-  "Panel 7": ["BitByBit", "Penta NEUTRON", "Innovators", "Runtime Terrors", "TeamX", "Team ZI0N", "GM HALAMMA", "AyuScan", "Team Ascend", "Ai Avengers", "GoldMiners"],
-  "Panel 8": ["Gameis Alice", "Lazy Loopers", "@Vortex", "Team Saniya", "Unexpected Outputs", "Healthnova", "GOONERS", "OriginX", "AITians", "Team Atlas"],
-  "Panel 9": ["Team CodeZilla", "HustleCult 3.0", "BugBuster Divas", "Glitch Club", "Shieldher", "Hamsini", "DevX", "Anonymous Hackers", "Tech Geeks"],
-  "Panel 10": ["MahilaMitra", "PrachandCoders", "SafeHer", "CodeStars", "Codeflex", "Techno Rangers", "PixelPops", "HERWAY AI Safety Team", "SHEild001"],
+  "Panel 3": ["Dolce Far Niente", "Hogriders", "Dev Pirates", "TurboTechies", "CodeBlooded", "Team 100x", "Bluescreen", "Team Debug", "EFN_FC", "CodeXcelerators", "TEAM HACKASTRA", "Chocolate Milkshake"],
+  "Panel 4": ["Prime Innovators", "CtrlZ", "Morpheus builders", "DataHackers", "Recursive Impact", "SkillBridge", "Hell-X", "EduTech", "X Force", "NovaBytes", "TriadX", "Commited"],
+  "Panel 5": ["Asphalt_404", "the_developers", "Code2Crop", "ShunyaCode", "E.X.E", "God's Plan", "Finovators", "Algorithm Addicts", "404 Not Founders", "Overclocked", "Neural Ninjas", "BlackBulls"],
+  "Panel 6": ["Quanta5", "Problem Solvers", "TechByte", "Credit Crusaders", "ERROR_404", "PathFinders", "MoneyMind AI", "LearningRateZero", "Cosmic Compilers", "Team CredX", "Nexus Neon", "CODESTREAX"],
+  "Panel 7": ["MindStack", "PEANUT BUTTER", "The RESTful Coders", "Team Genspark", "Poha Jalebi", "SKN_Moggers", "Team Async", "DDOS ME", "The Resonators", "BitByBit", "Penta NEUTRON", "Innovators"],
+  "Panel 8": ["Runtime Terrors", "TeamX", "Team ZI0N", "GM HALAMMA", "AyuScan", "Team Ascend", "Ai Avengers", "GoldMiners", "Gameis Alice", "Lazy Loopers", "@Vortex", "Team Saniya"],
+  "Panel 9": ["Unexpected Outputs", "Healthnova", "GOONERS", "OriginX", "AITians", "Team Atlas", "Team CodeZilla", "HustleCult 3.0", "BugBuster Divas", "Glitch Club", "Shieldher", "Hamsini"],
+  "Panel 10": ["DevX", "Anonymous Hackers", "Tech Geeks", "MahilaMitra", "PrachandCoders", "SafeHer", "CodeStars", "Codeflex", "Techno Rangers", "PixelPops", "HERWAY AI Safety Team", "SHEild001"],
 };
 
 // ─── Matrix Rain Canvas ────────────────────────────────────────────────
@@ -396,8 +396,8 @@ export default function App() {
                           <button
                             onClick={() => setStatus(idx, team.status === 'current' ? 'done' : 'current')}
                             className={`inline-flex items-center gap-2 px-5 py-2 border font-mono text-xs font-bold tracking-widest uppercase transition-all duration-150 active:scale-95 ${team.status === 'current'
-                                ? 'bg-[#00ff41]/10 border-[#00ff41] text-[#00ff41] hover:bg-[#00ff41] hover:text-black hover:shadow-[0_0_20px_rgba(0,255,65,0.6)] glow-box'
-                                : 'bg-[#ff3333]/10 border-[#ff3333] text-[#ff4444] hover:bg-[#ff3333] hover:text-black hover:shadow-[0_0_20px_rgba(255,51,51,0.6)] glow-box-red'
+                              ? 'bg-[#00ff41]/10 border-[#00ff41] text-[#00ff41] hover:bg-[#00ff41] hover:text-black hover:shadow-[0_0_20px_rgba(0,255,65,0.6)] glow-box'
+                              : 'bg-[#ff3333]/10 border-[#ff3333] text-[#ff4444] hover:bg-[#ff3333] hover:text-black hover:shadow-[0_0_20px_rgba(255,51,51,0.6)] glow-box-red'
                               }`}
                           >
                             <span style={{ fontSize: '10px' }}>▶</span>
